@@ -29,6 +29,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
         print(UIApplication.shared.backgroundRefreshStatus.rawValue)
         // Do any additional setup after loading the view, typically from a nib.
+        
+        let beaconRegion = CLBeaconRegion(proximityUUID: UUID(uuidString: "74278BDA-B644-4520-8F0C-720EAF059935")!, major: 5, identifier: "TestBeacon")
+        locationManager.startMonitoring(for: beaconRegion)
+        //locationManager.startRangingBeacons(in: beaconRegion)
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,15 +40,53 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if let message = UserDefaults.standard.value(forKey: "beacon") {
-            print(message)
-        } else {
-            print("Did not range beacons properly???")
+
+    /*
+    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
+        for beacon in beacons {
+            let major = beacon.major
+            let minor = beacon.minor
+            let uuid = beacon.proximityUUID
+            print("Ranged a beacon: Maj \(major), minor: \(minor), uuid: \(uuid)")
+            /*
+            let rangedBeacon: PFObject = PFObject(className: "RangedBeacons")
+            rangedBeacon["Major"] = major.intValue
+            rangedBeacon["Minor"] = minor.intValue
+            rangedBeacon["UUID"] = uuid.uuidString
+            
+            rangedBeacon.saveInBackground { (done, error) in
+                if error != nil {
+                    print(error?.localizedDescription)
+                }
+            }
+            */
+        }
+     */
+    func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
+        if let region = region as? CLBeaconRegion {
+            print("Region: \(region.proximityUUID)")
         }
     }
-
-
+    
+    func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
+        if let region = region as? CLBeaconRegion {
+            print("Region: \(region.proximityUUID)")
+        }
+    }
+    /*
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        print("Did enter region")
+        if let beaconRegion = region as? CLBeaconRegion {
+            print("Did enter region: Maj: \(beaconRegion.major), min \(beaconRegion.minor), uuid: \(beaconRegion.proximityUUID)")
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        print("Did exit region")
+        if let beaconRegion = region as? CLBeaconRegion {
+            print("Did exit region Maj: \(beaconRegion.major), min \(beaconRegion.minor), uuid: \(beaconRegion.proximityUUID)")
+        }
+    }
+ */
 }
 
