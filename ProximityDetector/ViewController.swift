@@ -30,38 +30,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         print(UIApplication.shared.backgroundRefreshStatus.rawValue)
         // Do any additional setup after loading the view, typically from a nib.
         
+        //Now we setup the beacon monitoring
+        //Tell it what beacon we want to look for
         let beaconRegion = CLBeaconRegion(proximityUUID: UUID(uuidString: "74278BDA-B644-4520-8F0C-720EAF059935")!, major: 5, identifier: "TestBeacon")
+        //Start monitoring for said beacon
         locationManager.startMonitoring(for: beaconRegion)
-        //locationManager.startRangingBeacons(in: beaconRegion)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 
-    /*
-    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-        for beacon in beacons {
-            let major = beacon.major
-            let minor = beacon.minor
-            let uuid = beacon.proximityUUID
-            print("Ranged a beacon: Maj \(major), minor: \(minor), uuid: \(uuid)")
-            /*
-            let rangedBeacon: PFObject = PFObject(className: "RangedBeacons")
-            rangedBeacon["Major"] = major.intValue
-            rangedBeacon["Minor"] = minor.intValue
-            rangedBeacon["UUID"] = uuid.uuidString
-            
-            rangedBeacon.saveInBackground { (done, error) in
-                if error != nil {
-                    print(error?.localizedDescription)
-                }
-            }
-            */
-        }
-     */
+    //MARK: - Core Location managing functions
     func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
         if let region = region as? CLBeaconRegion {
             print("Region: \(region.proximityUUID)")

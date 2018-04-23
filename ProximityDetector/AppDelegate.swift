@@ -126,12 +126,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate: CLLocationManagerDelegate {
+    
     /*
-    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
-        if state == .inside {
-            locationManager.startRangingBeacons(in: region as! CLBeaconRegion)
-        }
-    }
+        *Since we are only monitoring for beacons, not ranging, we will only get updates when you enter or exit a region
+        *When we enter or exit, we want to send that data to Parse
     */
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
@@ -160,21 +158,4 @@ extension AppDelegate: CLLocationManagerDelegate {
         }
     }
     
-    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-        for beacon in beacons {
-            let major = beacon.major
-            let minor = beacon.minor
-            let uuid = beacon.proximityUUID
-            
-            let rangedBeacon: PFObject = PFObject(className: "RangedBeacons")
-            rangedBeacon["UUID"] = uuid.uuidString
-            
-            rangedBeacon.saveInBackground { (done, error) in
-                if error != nil {
-                    print(error?.localizedDescription)
-                }
-            }
-            
-        }
-    }
 }
