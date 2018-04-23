@@ -100,6 +100,11 @@
 					ADA1E11720203975004FCFC4 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -281,6 +286,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7TR28E27K7;
 				INFOPLIST_FILE = ProximityDetector/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.philippeyu.ProximityDetector;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -296,6 +302,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7TR28E27K7;
 				INFOPLIST_FILE = ProximityDetector/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.philippeyu.ProximityDetector;
 				PRODUCT_NAME = "$(TARGET_NAME)";

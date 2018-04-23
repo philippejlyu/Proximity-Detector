@@ -8,15 +8,21 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    let locationManager = CLLocationManager()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        UIApplication.shared.setMinimumBackgroundFetchInterval(5)
+        locationManager.delegate = self
+        locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.pausesLocationUpdatesAutomatically = false
         return true
     }
 
@@ -91,3 +97,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
+        if state == .inside {
+            locationManager.startRangingBeacons(in: region as! CLBeaconRegion)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
+        for beacon in beacons {
+            let major = beacon.major
+            let minor = beacon.minor
+            let uuid = beacon.proximityUUID
+            
+            
+        }
+    }
+}
