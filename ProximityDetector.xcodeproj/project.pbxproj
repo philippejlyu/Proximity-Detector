@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		656844D70976FA9891E62021 /* Pods_ProximityDetector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC70EA92BA967F03DC66DEE0 /* Pods_ProximityDetector.framework */; };
 		ADA1E11C20203975004FCFC4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA1E11B20203975004FCFC4 /* AppDelegate.swift */; };
 		ADA1E11E20203975004FCFC4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA1E11D20203975004FCFC4 /* ViewController.swift */; };
 		ADA1E12120203975004FCFC4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADA1E11F20203975004FCFC4 /* Main.storyboard */; };
@@ -16,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		758B8ECB2906461CC8B01EC9 /* Pods-ProximityDetector.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProximityDetector.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProximityDetector/Pods-ProximityDetector.debug.xcconfig"; sourceTree = "<group>"; };
+		9E4845B7B8533C0DEB769AB0 /* Pods-ProximityDetector.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProximityDetector.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProximityDetector/Pods-ProximityDetector.release.xcconfig"; sourceTree = "<group>"; };
 		ADA1E11820203975004FCFC4 /* ProximityDetector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProximityDetector.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADA1E11B20203975004FCFC4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ADA1E11D20203975004FCFC4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +27,7 @@
 		ADA1E12520203975004FCFC4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ADA1E12820203975004FCFC4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ADA1E12A20203975004FCFC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC70EA92BA967F03DC66DEE0 /* Pods_ProximityDetector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProximityDetector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				656844D70976FA9891E62021 /* Pods_ProximityDetector.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +47,8 @@
 			children = (
 				ADA1E11A20203975004FCFC4 /* ProximityDetector */,
 				ADA1E11920203975004FCFC4 /* Products */,
+				D2B1F592EECA125D8643D9D2 /* Pods */,
+				D5904B1A6BC452A7EA3E9EB9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +74,23 @@
 			path = ProximityDetector;
 			sourceTree = "<group>";
 		};
+		D2B1F592EECA125D8643D9D2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				758B8ECB2906461CC8B01EC9 /* Pods-ProximityDetector.debug.xcconfig */,
+				9E4845B7B8533C0DEB769AB0 /* Pods-ProximityDetector.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D5904B1A6BC452A7EA3E9EB9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FC70EA92BA967F03DC66DEE0 /* Pods_ProximityDetector.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +98,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ADA1E12D20203975004FCFC4 /* Build configuration list for PBXNativeTarget "ProximityDetector" */;
 			buildPhases = (
+				E6F49483B71FFBA9BA74E1BE /* [CP] Check Pods Manifest.lock */,
 				ADA1E11420203975004FCFC4 /* Sources */,
 				ADA1E11520203975004FCFC4 /* Frameworks */,
 				ADA1E11620203975004FCFC4 /* Resources */,
+				47D32C8BE634D299EE544E76 /* [CP] Embed Pods Frameworks */,
+				871011AF1A367DFB8EEB1D5F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -138,6 +165,62 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		47D32C8BE634D299EE544E76 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ProximityDetector/Pods-ProximityDetector-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/Parse/Parse.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parse.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ProximityDetector/Pods-ProximityDetector-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		871011AF1A367DFB8EEB1D5F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ProximityDetector/Pods-ProximityDetector-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E6F49483B71FFBA9BA74E1BE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ProximityDetector-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		ADA1E11420203975004FCFC4 /* Sources */ = {
@@ -281,6 +364,7 @@
 		};
 		ADA1E12E20203975004FCFC4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 758B8ECB2906461CC8B01EC9 /* Pods-ProximityDetector.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -297,6 +381,7 @@
 		};
 		ADA1E12F20203975004FCFC4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E4845B7B8533C0DEB769AB0 /* Pods-ProximityDetector.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

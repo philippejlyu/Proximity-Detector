@@ -1,0 +1,6 @@
+framework module Pods_ProximityDetector {
+  umbrella header "Pods-ProximityDetector-umbrella.h"
+
+  export *
+  module * { export * }
+}

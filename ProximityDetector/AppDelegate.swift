@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import CoreLocation
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,6 +24,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         locationManager.delegate = self
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.pausesLocationUpdatesAutomatically = false
+        
+        //Now we initialize parse
+        let config = ParseClientConfiguration {
+            $0.applicationId = "appID"
+            $0.clientKey = "clientKey"
+            $0.server = "https://asdfertyghjbgnhrt.com"
+        }
+        Parse.initialize(with: config)
+        saveInstallationObject()
         return true
     }
 
@@ -48,6 +58,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
+    }
+    
+    //MARK: - Parse support
+    func saveInstallationObject(){
+        if let installation = PFInstallation.current(){
+            installation.saveInBackground {
+                (success: Bool, error: Error?) in
+                if (success) {
+                    print("You have successfully connected your app to Back4App!")
+                } else {
+                    if let myError = error{
+                        print(myError.localizedDescription)
+                    }else{
+                        print("Uknown error")
+                    }
+                }
+            }
+        }
     }
 
     // MARK: - Core Data stack
