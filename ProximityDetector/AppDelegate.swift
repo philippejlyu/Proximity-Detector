@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import CoreLocation
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,6 +24,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         locationManager.delegate = self
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.pausesLocationUpdatesAutomatically = false
+        
+        //Now we initialize parse
+        let config = ParseClientConfiguration {
+            $0.applicationId = "appID"
+            $0.clientKey = "clientKey"
+            $0.server = "https://server.com"
+        }
+        Parse.initialize(with: config)
+        saveInstallationObject()
         return true
     }
 
@@ -48,6 +58,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
+    }
+    
+    //MARK: - Parse support
+    func saveInstallationObject(){
+        if let installation = PFInstallation.current(){
+            installation.saveInBackground {
+                (success: Bool, error: Error?) in
+                if (success) {
+                    print("You have successfully connected your app to Back4App!")
+                } else {
+                    if let myError = error{
+                        print(myError.localizedDescription)
+                    }else{
+                        print("Uknown error")
+                    }
+                }
+            }
+        }
     }
 
     // MARK: - Core Data stack
@@ -98,9 +126,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate: CLLocationManagerDelegate {
+    /*
     func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
         if state == .inside {
             locationManager.startRangingBeacons(in: region as! CLBeaconRegion)
+        }
+    }
+    */
+    
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        guard let region = region as? CLBeaconRegion else { return }
+        
+        let detectedBeacon = PFObject(className: "RangedBeacons")
+        detectedBeacon["UUID"] = region.proximityUUID.uuidString
+        detectedBeacon["entering"] = true
+        detectedBeacon.saveInBackground { (done, error) in
+            if error != nil {
+                print(error?.localizedDescription)
+            }
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        guard let region = region as? CLBeaconRegion else { return }
+        
+        let detectedBeacon = PFObject(className: "RangedBeacons")
+        detectedBeacon["UUID"] = region.proximityUUID.uuidString
+        detectedBeacon["entering"] = false
+        detectedBeacon.saveInBackground { (done, error) in
+            if error != nil {
+                print(error?.localizedDescription)
+            }
         }
     }
     
@@ -110,6 +166,14 @@ extension AppDelegate: CLLocationManagerDelegate {
             let minor = beacon.minor
             let uuid = beacon.proximityUUID
             
+            let rangedBeacon: PFObject = PFObject(className: "RangedBeacons")
+            rangedBeacon["UUID"] = uuid.uuidString
+            
+            rangedBeacon.saveInBackground { (done, error) in
+                if error != nil {
+                    print(error?.localizedDescription)
+                }
+            }
             
         }
     }
